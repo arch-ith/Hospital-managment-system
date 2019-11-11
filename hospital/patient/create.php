@@ -9,7 +9,7 @@
   $adate=$_GET['adate'];
   $atime=$_GET['atime'];
   $atime .= ":00";
-   $idoc="select d.did from docter d,workingtime w where d.spec  in ('$sp') and '$atime' BETWEEN stime and etime AND w.did=d.did";
+   $idoc="select d.did from docter d,workingtime w where d.spec  in ('$sp') and '$atime' BETWEEN w.stime and w.etime AND w.did=d.did";
   $didarr=$con->query($idoc);
   $did=0;
   while ($row = $didarr->fetch_assoc()) {

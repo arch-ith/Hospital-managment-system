@@ -45,6 +45,59 @@
                 echo "<h4>Value inserted</h4>";
               }
              ?>
+             <br><br><br>
+             <h3>Unfinished Records</h3><hr><br><br>
+             <?php
+                  $con =mysqli_connect("localhost","root","","hospital");
+                  $count=1;
+                  if ($con -> connect_error) {
+                    echo "error";
+                  }
+                  $q="select a.aid,a.pid from prescribed p, appointment a where a.aid not in (p.aid) and a.did=$id ORDER BY  adate,atime asc";
+                  $result=$con->query($q);
+
+               ?>
+                 <div class="disp">
+                   <?php while ($row = $result->fetch_assoc()):  ?>
+
+                   <div class="d">
+                     <div class="count">
+                       <?php echo $count ?>
+                       <?php $count=$count+1 ?>
+                     </div>
+                     <?php  echo "<br>Appointment ID : ".$row['aid']."<br>Patient ID : ".$row['pid']."<br><br>";
+                    ?>
+                  </div>
+                    <?php endwhile; ?>
+                </div>
+                <br><br><br><br><br><br>
+              <h3>Finished Records</h3><hr><br><br>
+              <?php
+                   $con =mysqli_connect("localhost","root","","hospital");
+                   $count=1;
+                   if ($con -> connect_error) {
+                     echo "error";
+                   }
+                   $q="select a.aid,a.pid from prescribed p, appointment a where a.aid in (p.aid) and a.did=$id ORDER BY  adate desc";
+                   $result=$con->query($q);
+
+                ?>
+                  <div class="disp">
+                    <?php while ($row = $result->fetch_assoc()):  ?>
+
+                    <div class="d">
+                      <div class="count">
+                        <?php echo $count ?>
+                        <?php $count=$count+1 ?>
+                      </div>
+                      <?php  echo "<br>Appointment ID : ".$row['aid']."<br>Patient ID : ".$row['pid']."<br><br>";
+                     ?>
+                   </div>
+                     <?php endwhile; ?>
+                 </div>
+                 <br><br><br>
+
+
     </div>
   </body>
 </html>

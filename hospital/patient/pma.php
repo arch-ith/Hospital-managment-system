@@ -19,7 +19,7 @@
   <head>
     <meta charset="utf-8">
     <title>Welcome</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
   </head>
   <body>
     <div class="patient">
@@ -38,7 +38,7 @@
       <h3>Make an appointment</h3><hr><br><br>
         <form class="" action="create.php" method="get" >
           Date for the appointment <input type="date" name="adate" placeholder="Date" ><br><br><br>
-          Time for the appointment <input type="time" style='width:80px' name="atime" min="08:00:00" max="22:00:00" ><br><br><br>
+          Time for the appointment <input type="time" style='width:80px' name="atime" min="08:05:00" max="22:00:00" ><br><br><br>
           Doctors Specialization <br><br>
           <input type="radio" name="sp" value="Allergists">Allergists &nbsp&nbsp&nbsp&nbsp
           <input type="radio" name="sp" value="Cardiologists">Cardiologists&nbsp&nbsp&nbsp&nbsp
@@ -49,11 +49,37 @@
           <input type="radio" name="sp" value="pediatrician">pediatrician<br><br><br>
           <button type="submit" >Book an Appointment</button><br><br>
         </form>
-          <h3>Appointment history</h3><hr>
+          <h3>Your Appointments</h3><hr>
       </div>
-      <br>
+        <?php
+             $con =mysqli_connect("localhost","root","","hospital");
+             $count=1;
+             if ($con -> connect_error) {
+               echo "error";
+             }
+             $q="select aid,pid,did,atime,adate from appointment where pid=$id ORDER BY  adate desc,atime asc";
+             $result=$con->query($q);
+
+          ?>
+
+
+            <div class="disp">
+              <?php while ($row = $result->fetch_assoc()):  ?>
+
+              <div class="d">
+                <div class="count">
+                  <?php echo $count ?>
+                  <?php $count=$count+1 ?>
+                </div>
+                <?php
+                 echo "<br>Appointment id : ".$row['aid']."<br>Patient id : ".$row['pid']."<br>Doc id : ".$row['did']."<br>Appointment time : ".$row['atime']."<br>Appointment date : ".$row['adate']."<br><br>";
+               ?>
+             </div>
+               <?php endwhile; ?>
+           </div>
+           <br><br><br><br><br><br>
       <div class="tab">
-        <table  rules="none">
+        <table >
           <tr><th>Appointment id&nbsp&nbsp</th><th>&nbsp&nbspPatient id&nbsp&nbsp</th><th>&nbsp&nbsp&nbsp&nbsp&nbspDoc id&nbsp&nbsp</th><th>&nbsp&nbspAppointment time&nbsp&nbsp</th><th>&nbsp&nbspAppointment date</th></tr><br>
          <?php
               $con =mysqli_connect("localhost","root","","hospital");

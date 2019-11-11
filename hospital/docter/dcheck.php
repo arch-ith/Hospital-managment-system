@@ -6,7 +6,7 @@
   <?php
   $id=$_GET['id'];
   $pass=$_GET['pass'];
-  if(empty($_GET['id'])||empty($_GET['pass'])||$fn=='') {
+  if(empty($_GET['id'])||empty($_GET['pass'])) {
     header("location: ../dlogin.html");
   }
   $fn=null;
@@ -20,6 +20,10 @@
   while ($row = $fname->fetch_assoc()) {
     $fn = implode("",$row);
   }
+  if($fn!='')
     header("location: docterlogin.php");
+  else {
+    header("location: ../dlogin.html");
+  }
     mysqli_close($con);
 ?>

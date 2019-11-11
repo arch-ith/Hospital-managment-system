@@ -1,9 +1,14 @@
 <?php
   session_start();
-    $_SESSION["flag"] = "3";
-    if (!isset($upc)) {
+    $_SESSION["flag"] = 3;
+    $aid=$_GET['aid'];
+    $con =mysqli_connect("localhost","root","","hospital");
+  /*  if (empty($upc)) {
       header("location:update1.php");
-    }
-    $q="DELETE appointment WHERE aid=$aid";
-    $fname=$con->query($q);
+    }*/
+    $q="DELETE from appointment WHERE aid=$aid";
+    if($result=$con->query($q)==true)
+    echo "true";
+
+    header("location:update1.php");
 ?>

@@ -3,6 +3,10 @@
   padding: 0px;
   font-family: sans-serif;
 }
+h5
+{
+  color: red;
+}
 .h{
   position: absolute;
   font-weight: 900;
@@ -13,6 +17,7 @@
   padding-left:20px;
   top: 20px;
 }
+
 .contain img{
     position: relative;
     height:100vh;
@@ -28,9 +33,9 @@
 }
 .content ul li{
   display: inline;
+  color: white;
   padding: 20px;
   font-size: 18px;
-  color: white;
   margin-right: 20px;
   background-color: rgba(255,255,255,0.5);
   border-radius: 10%;
@@ -80,23 +85,27 @@
 }
 .patient h1{
   font-weight: 900;/*
-  color: transparent;
+  color: grey;
   -webkit-text-stroke:1px black;*/
+  font-size: 30px;
   padding:30px;
 }
 .patient ul{
-  background-color:#f2f2f2;
+  position: absolute;
+  top:40px;
+  right:0px;
   padding : 10px;
-  padding-left: 20px;
-  text-decoration: none;
   list-style-type: none;
-  font-size: 20px;
+  font-size: 15px;
 }
   a{
     color: black;
   text-decoration: none;
 }
 .patient ul li{
+  font-weight: 700;
+  border-radius: 5%;
+  background-color:#f2f2f2;
   color: black;
   padding-left: 30px;
   padding-right: 30px;
@@ -113,18 +122,17 @@
   box-sizing: border-box;
   width: 200px;
   height: 200px;
-  margin-left: 60px;
-}
+  margin-left: 60px;}
 .patient .gid{
   padding-left: 2%;
   margin-top: 50px;
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 32% 32% 32%;
   grid-column-gap: 20px;
 }
-
 .patient .gid .g {
   transition: 1s;
+  margin: 10px;
 }
 .patient .gid .g:hover{
   transform: scale(1.1);
@@ -135,6 +143,21 @@
   padding-top:10px;
   padding-left: 10%;
   text-decoration: underline;
+}
+.disp{
+  text-align: center;
+  display: grid;
+  grid-template-columns: 32% 32% 32%;
+}
+.disp .d{
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 5%;
+  margin: 10px;
+  color: white;
+  font-weight: 700;
+  background-color:gray;
+  font-size: 15px;
 }
 .foot{
   float: right;
@@ -151,6 +174,15 @@
   padding:30px;
   margin-left: 30px;
 
+}
+.count{
+  text-align: center;
+  color: black;
+  padding: 10px;
+  height:30px;
+  width:30px;
+  background: #E6E6FA;
+  border-radius: 50%;
 }
 .apint button{
   margin-left: 400px;

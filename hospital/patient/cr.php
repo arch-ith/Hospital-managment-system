@@ -8,7 +8,7 @@
   <?php
   $id=$_GET['id'];
   $pass=$_GET['pass'];
-  if(empty($_GET['id'])||empty($_GET['pass'])||$fn=='') {
+  if(empty($_GET['id'])||empty($_GET['pass'])) {
     header("location: login.html");
   }
   $fn=null;
@@ -16,13 +16,17 @@
   if ($con -> connect_error) {
     echo "error";
   }
-  $q=null;
+  $fn='';
   $q="select fname from patient where pid in ($id) and pass in ('$pass')";
   $fname=$con->query($q);
   while ($row = $fname->fetch_assoc()) {
     $fn = implode("",$row);
   }
     echo "string".$fn;
-    header("location: patientlogin.php");
+    if($fn!='')
+      header("location: patientlogin.php");
+    else {
+      header("location: ../login.html");
+    }
     mysqli_close($con);
 ?>

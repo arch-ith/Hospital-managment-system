@@ -10,9 +10,6 @@
     $fn = implode("",$row);
   }
 ?>
-<script type="text/javascript">
-  var today = new Date();
-</script>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -30,13 +27,38 @@
          <a href="ire.php"><li>Insert Records</li></a>
          <a href="../index.html"><li>Log out</li> </a>
       </ul><br><br>
-      <h2>hey <?php echo "".$fn; ?>!</h2>
+      <h2>hey Dr.<?php echo "".$fn; ?> !</h2>
     </div>
     <br><br>
     <div class="apint">
       <h3>Appointment's List</h3><hr>
       </div>
       <br>
+      <?php
+           $con =mysqli_connect("localhost","root","","hospital");
+           $count=1;
+           if ($con -> connect_error) {
+             echo "error";
+           }
+           $q="select aid,pid,did,atime,adate from appointment where did=$id ORDER BY  adate desc,atime asc";
+           $result=$con->query($q);
+
+        ?>
+          <div class="disp">
+            <?php while ($row = $result->fetch_assoc()):  ?>
+
+            <div class="d">
+              <div class="count">
+                <?php echo $count ?>
+                <?php $count=$count+1 ?>
+              </div>
+              <?php
+               echo "<br>Appointment id : ".$row['aid']."<br>Patient id : ".$row['pid']."<br>Doctor id : ".$row['did']."<br>Appointment time : ".$row['atime']."<br>Appointment date : ".$row['adate']."<br><br>";
+             ?>
+           </div>
+             <?php endwhile; ?>
+         </div>
+         <br><br><br><br><br><br>
       <div class="tab">
         <table  rules="none">
           <tr><th>Appointment id&nbsp&nbsp</th><th>&nbsp&nbspPatient id&nbsp&nbsp</th><th>&nbsp&nbsp&nbsp&nbsp&nbspDoc id&nbsp&nbsp</th><th>&nbsp&nbspAppointment time&nbsp&nbsp</th><th>&nbsp&nbspAppointment date</th></tr><br>
